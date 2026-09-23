@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAGE - a private, context-aware AI layer for Snapdragon-powered PCs.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none';">
+  <meta name="referrer" content="no-referrer">
+  <title>SAGE / Context cockpit</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="rail" aria-label="Primary navigation">
+      <div class="brand-mark" aria-label="SAGE">S<span>/</span></div>
+      <nav>
+        <button class="rail-button active" type="button" aria-label="Context" data-view="context"><span>◒</span><small>context</small></button>
+        <button class="rail-button" type="button" aria-label="Signals" data-view="signals"><span>⌁</span><small>signals</small></button>
+        <button class="rail-button" type="button" aria-label="Memory" data-view="memory"><span>◫</span><small>memory</small></button>
+      </nav>
+      <button class="rail-button settings" type="button" aria-label="Settings" id="settings"><span>⚙</span><small>settings</small></button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">SNAPDRAGON AI PC / LOCAL RUNTIME</p>
+          <h1>Good morning, Maya<span class="dot">.</span></h1>
+        </div>
+        <div class="runtime-state"><span class="pulse"></span><span>private mode</span><strong>08:42</strong></div>
+      </header>
+
+      <section class="hero-grid" id="context-view">
+        <div class="hero-copy">
+          <p class="eyebrow accent">INTENT HORIZON / 01</p>
+          <h2>Continue the work<br><em>already in motion.</em></h2>
+          <p class="hero-note">SAGE has assembled a low-resolution picture of your morning and found one high-confidence next step. No prompt required.</p>
+          <div class="hero-actions">
+            <button class="primary-action" id="simulate" type="button"><span>↗</span> Simulate next intent</button>
+            <button class="text-action" id="dismiss" type="button">Dismiss suggestion</button>
+          </div>
+        </div>
+        <div class="intent-card" id="intent-card">
+          <div class="card-topline"><span class="status-chip"><span class="mini-pulse"></span> predicted next</span><span class="confidence">92% confidence</span></div>
+          <div class="intent-icon">↳</div>
+          <p class="card-label">WORKFLOW CONTINUATION</p>
+          <h3 id="intent-title">Review the battery benchmark notes</h3>
+          <p id="intent-body">Your research workspace is open, the same paper is in focus, and yesterday's unresolved marker is still waiting in the notes.</p>
+          <div class="evidence-list" id="evidence-list">
+            <div><span class="evidence-icon">▣</span><span>Research workspace active for 18 min</span><b>+42</b></div>
+            <div><span class="evidence-icon">◌</span><span>Unresolved marker from yesterday</span><b>+31</b></div>
+            <div><span class="evidence-icon">⌁</span><span>Battery trace on current display</span><b>+19</b></div>
+          </div>
+          <button class="stage-action" id="stage" type="button">Stage workspace <span>→</span></button>
+        </div>
+      </section>
+
+      <section class="lower-grid">
+        <div class="panel signal-panel" id="signals-view">
+          <div class="panel-heading"><div><p class="eyebrow">LOCAL CONTEXT</p><h3>What SAGE knows right now</h3></div><span class="live-tag">LIVE</span></div>
+          <div class="signal-grid">
+            <div class="signal"><div class="signal-head"><span class="signal-symbol camera">◉</span><span class="signal-state">available</span></div><strong>Presence</strong><p>Camera posture cue</p><div class="meter"><i style="width: 78%"></i></div><small>78% stable</small></div>
+            <div class="signal"><div class="signal-head"><span class="signal-symbol audio">)))</span><span class="signal-state">local</span></div><strong>Audio scene</strong><p>Quiet workspace</p><div class="meter warm"><i style="width: 14%"></i></div><small>14 dB ambient</small></div>
+            <div class="signal"><div class="signal-head"><span class="signal-symbol screen">▦</span><span class="signal-state">indexed</span></div><strong>Screen focus</strong><p>Research workspace</p><div class="meter green"><i style="width: 86%"></i></div><small>86% continuity</small></div>
+            <div class="signal"><div class="signal-head"><span class="signal-symbol apps">▤</span><span class="signal-state">local</span></div><strong>Activity</strong><p>3 related windows</p><div class="meter violet"><i style="width: 64%"></i></div><small>64% relevance</small></div>
+          </div>
+        </div>
+
+        <div class="panel timeline-panel" id="memory-view">
+          <div class="panel-heading"><div><p class="eyebrow">EPISODIC THREAD</p><h3>Work remembered, lightly</h3></div><button class="icon-button" aria-label="More timeline options" type="button">•••</button></div>
+          <div class="timeline">
+            <div class="timeline-item"><span class="time">08:24</span><span class="timeline-line"></span><div><strong>Research workspace reopened</strong><p>Project SAGE / benchmark-notes.md</p></div></div>
+            <div class="timeline-item"><span class="time">08:31</span><span class="timeline-line"></span><div><strong>Battery trace compared</strong><p>Two runs, one unresolved variance</p></div></div>
+            <div class="timeline-item current"><span class="time">08:42</span><span class="timeline-line"></span><div><strong>Intent boundary reached</strong><p>SAGE is ready to suggest a next step</p></div></div>
+          </div>
+          <div class="memory-footer"><span>Memory expires in 7 days</span><button type="button" id="clear-memory">Clear thread</button></div>
+        </div>
+      </section>
+
+      <footer class="footer-bar"><span><b>Q</b> Snapdragon NPU / ready</span><span>Raw signals stay on this PC <i>·</i> <button type="button" id="privacy">Privacy controls</button></span></footer>
+    </main>
+  </div>
+  <dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <div class="dialog-heading"><div><p class="eyebrow">LOCAL POLICY</p><h2 id="privacy-title">Privacy controls</h2></div><button class="close-button" id="close-privacy" type="button" aria-label="Close privacy controls">×</button></div>
+    <p class="dialog-intro">SAGE only uses the signals you permit. Raw sensor data is processed in memory and is never sent to a server by this build.</p>
+    <label class="toggle-row"><span><strong>Camera presence</strong><small>Coarse presence only, no identity inference</small></span><input type="checkbox" id="consent-camera" checked><i></i></label>
+    <label class="toggle-row"><span><strong>Microphone scene</strong><small>Ambient scene classification, no transcript</small></span><input type="checkbox" id="consent-microphone" checked><i></i></label>
+    <label class="toggle-row"><span><strong>Screen understanding</strong><small>Redact private and password surfaces</small></span><input type="checkbox" id="consent-screen" checked><i></i></label>
+    <label class="toggle-row"><span><strong>Episode retention</strong><small>Automatically expire local memory after 7 days</small></span><input type="checkbox" id="consent-retention" checked><i></i></label>
+    <div class="dialog-footer"><span class="privacy-lock">⌾ local-only policy</span><button class="primary-action" id="save-privacy" type="button">Save controls</button></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
