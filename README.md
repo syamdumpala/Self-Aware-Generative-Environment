@@ -8,11 +8,13 @@ This repository contains a competition-ready product prototype and the technical
 
 ## Prototype
 
-Open `index.html` in a browser. The interface is a static demo shell that simulates the on-device pipeline:
+The production frontend is now the React/Next.js App Router application in `frontend/`. It implements the on-device pipeline surface:
 
 `signals -> local context graph -> intent horizon -> user-approved action`
 
-Use **Simulate next intent** to move the demo from passive sensing to a ranked, explainable suggestion. No network request or external model is used by the prototype.
+Run it with `npm install` and `npm run dev` from `frontend/`, then open `http://localhost:3000`. No network request or external model is used by the local UI surface.
+
+The original root `index.html` remains as a zero-dependency recovery surface for offline judging. It is not the primary product frontend.
 
 ## Advanced features
 
@@ -39,7 +41,10 @@ This gives SAGE a defensible position in the AI PC category: an operating layer 
 
 ## Repository map
 
-- `index.html`, `styles.css`, `app.js`: interactive SAGE context cockpit
+- `frontend/app`: production React/Next.js context cockpit
+- `frontend/next.config.ts`: security headers and runtime configuration
+- `frontend/package.json`: pinned frontend dependencies and scripts
+- `index.html`, `styles.css`, `app.js`: zero-dependency recovery surface
 - `docs/RESEARCH.md`: research foundation, product thesis, and innovation analysis
 - `docs/ARCHITECTURE.md`: system architecture, data flow, Snapdragon execution plan, and model strategy
 - `docs/DEMO.md`: three-minute live demo and judge Q&A
@@ -56,6 +61,12 @@ The browser prototype is intentionally deterministic. The production path is a W
 3. Bounded agency: SAGE suggests and stages actions; the user approves consequential actions.
 4. Friction reduction: the system helps continue work, rather than starting another conversation.
 5. Graceful degradation: if a sensor or accelerator is unavailable, the product remains useful.
+
+## Production frontend contract
+
+The Next.js surface owns presentation and user policy, not sensor capture. A production Windows companion service must provide signed local events through a same-origin boundary, validate every event against a schema, and keep raw camera, microphone, and screen data outside the browser process. The frontend accepts only redacted evidence, confidence, provenance, and bounded action descriptors.
+
+This separation makes SAGE production-shaped: the browser cannot silently access sensors or execute arbitrary desktop actions, while the local service can be independently permissioned, tested, and accelerated on Snapdragon.
 
 ## Run and verify
 

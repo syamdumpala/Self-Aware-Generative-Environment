@@ -80,3 +80,15 @@ def test_ui_contains_privacy_and_intent_contract():
 def test_consent_payload_is_json_serializable():
     consent = {"camera": True, "microphone": False, "screen": True, "retention": True}
     assert json.loads(json.dumps(consent)) == consent
+
+
+def test_next_frontend_has_production_boundaries():
+    package = json.loads((ROOT / "frontend" / "package.json").read_text(encoding="utf-8"))
+    page = (ROOT / "frontend" / "app" / "page.tsx").read_text(encoding="utf-8")
+    config = (ROOT / "frontend" / "next.config.ts").read_text(encoding="utf-8")
+
+    assert package["dependencies"]["next"].startswith("15.")
+    assert package["dependencies"]["react"].startswith("19.")
+    assert "sage-context-capsule/v1" in page
+    assert "Focus shield" in page
+    assert "Content-Security-Policy" in config
