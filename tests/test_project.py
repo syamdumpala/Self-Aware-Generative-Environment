@@ -69,8 +69,12 @@ def test_ui_contains_privacy_and_intent_contract():
 
     assert "Content-Security-Policy" in html
     assert 'id="privacy-dialog"' in html
+    assert 'id="focus-shield"' in html
+    assert 'id="export-capsule"' in html
     assert "localStorage.setItem('sage-consent'" in javascript
     assert "Intent staged from local evidence." in javascript
+    assert "sage-context-capsule/v1" in javascript
+    assert "focusShieldEnabled" in javascript
 
 
 def test_consent_payload_is_json_serializable():

@@ -38,6 +38,7 @@
           <div class="hero-actions">
             <button class="primary-action" id="simulate" type="button"><span>↗</span> Simulate next intent</button>
             <button class="text-action" id="dismiss" type="button">Dismiss suggestion</button>
+            <button class="text-action shield-action" id="focus-shield" type="button" aria-pressed="false">◈ Focus shield</button>
           </div>
         </div>
         <div class="intent-card" id="intent-card">
@@ -73,7 +74,7 @@
             <div class="timeline-item"><span class="time">08:31</span><span class="timeline-line"></span><div><strong>Battery trace compared</strong><p>Two runs, one unresolved variance</p></div></div>
             <div class="timeline-item current"><span class="time">08:42</span><span class="timeline-line"></span><div><strong>Intent boundary reached</strong><p>SAGE is ready to suggest a next step</p></div></div>
           </div>
-          <div class="memory-footer"><span>Memory expires in 7 days</span><button type="button" id="clear-memory">Clear thread</button></div>
+          <div class="memory-footer"><span>Memory expires in 7 days</span><span class="memory-actions"><button type="button" id="export-capsule">Export capsule</button><button type="button" id="clear-memory">Clear thread</button></span></div>
         </div>
       </section>
 

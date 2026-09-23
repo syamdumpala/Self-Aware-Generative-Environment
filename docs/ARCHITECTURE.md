@@ -64,6 +64,15 @@ $$
 
 The system shows a suggestion only when the top candidate is sufficiently separated from alternatives and its expected utility exceeds interruption cost. A no-op candidate is always present.
 
+### Advanced product primitives
+
+- **Focus Shield:** a local policy state that raises the intervention threshold to infinity for proactive suggestions while preserving explicit user actions. It is useful during meetings, deep work, presentations, or accessibility-sensitive moments.
+- **Context Capsule:** a versioned, user-initiated export of a redacted episode. It contains semantic signals, intent candidates, confidence, provenance, and retention metadata; raw media and sensitive application content are excluded at serialization time.
+- **Intent ledger:** every suggestion, abstention, dismissal, and approval becomes a short-lived decision event. This enables calibration and interruption-cost measurement without retaining raw sensor streams.
+- **Energy-aware scheduling:** frequent low-cost features run on the NPU; richer vision or language passes are deferred until signal disagreement or an intent boundary justifies the energy cost.
+
+These primitives make SAGE distinct from a general assistant: the core object is a controllable decision boundary around a workflow, not a generated response.
+
 ## 4. Snapdragon execution plan
 
 - **NPU:** quantized vision, audio, embedding, and small language inference. Keep models resident where possible to avoid repeated transfers.
